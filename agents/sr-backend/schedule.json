@@ -1,0 +1,10 @@
+{
+  "agent": "sr-backend",
+  "timezone": "Europe/Paris",
+  "schedules": [],
+  "dispatch": {
+    "triggered_by": "cto",
+    "via": "gh:discussions/decisions (dispatch order)",
+    "description": "Sr Backend does not run on schedule. It is dispatched by CTO when there is work to do. Each dispatch creates a worktree and runs the implement skill."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "agent": "architect",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "architecture-review",
+      "cron": "0 10 * * 1",
+      "description": "Monday 10:00 — weekly architecture review of all design discussions"
+    },
+    {
+      "name": "bc-audit",
+      "cron": "0 11 * * 3",
+      "description": "Wednesday 11:00 — bounded context boundary audit"
+    }
+  ],
+  "dispatch": {
+    "triggered_by": "cto",
+    "via": "gh:discussions/features or gh:discussions/architecture (design review request)",
+    "description": "Also activated on-demand when CTO or agents request design review"
+  }
+}

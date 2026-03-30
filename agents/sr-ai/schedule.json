@@ -1,0 +1,16 @@
+{
+  "agent": "sr-ai",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "cost-check",
+      "cron": "37 */4 * * *",
+      "description": "Every 4 hours at :37 — token usage, cost per operation, budget tracking"
+    },
+    {
+      "name": "weekly-pipeline-review",
+      "cron": "0 10 * * 3",
+      "description": "Wednesday 10:00 — deep pipeline review: cost trends, accuracy drift, model comparison"
+    }
+  ]
+}

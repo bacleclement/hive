@@ -1,0 +1,16 @@
+{
+  "agent": "data-analyst",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "analysis-cycle",
+      "cron": "0 */6 * * *",
+      "description": "Every 6 hours — cross-agent analysis, trend detection, KPI update, anomaly scan"
+    },
+    {
+      "name": "weekly-insights",
+      "cron": "0 8 * * 1",
+      "description": "Monday 08:00 — comprehensive weekly insights report for the team"
+    }
+  ]
+}

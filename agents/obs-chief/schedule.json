@@ -1,0 +1,26 @@
+{
+  "agent": "obs-chief",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "hourly-health-check",
+      "cron": "7 * * * *",
+      "description": "Every hour at :07 — full health check (logs, errors, metrics)"
+    },
+    {
+      "name": "dawn-report",
+      "cron": "0 7 * * *",
+      "description": "Daily 07:00 — overnight summary report"
+    },
+    {
+      "name": "night-watch",
+      "cron": "0 22 * * *",
+      "description": "Daily 22:00 — light monitoring check with DevOps"
+    },
+    {
+      "name": "weekly-digest",
+      "cron": "0 8 * * 1",
+      "description": "Monday 08:00 — weekly metrics digest"
+    }
+  ]
+}

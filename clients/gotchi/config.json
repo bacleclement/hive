@@ -1,0 +1,56 @@
+{
+  "project": "gotchi",
+  "description": "AI-powered sourcing assistant platform with persona engine and CLI tooling",
+  "repo": {
+    "owner": "bacleclement",
+    "name": "gotchi",
+    "base_branch": "main",
+    "worktree_path": "~/worktrees/gotchi"
+  },
+  "kitt": {
+    "config": ".claude/config/kitt.json",
+    "skills": ".claude/skills/",
+    "workspace": ".claude/workspace/"
+  },
+  "human": {
+    "name": "Clement Bacle",
+    "github": "bacleclement",
+    "timezone": "Europe/Paris",
+    "notify": {
+      "telegram": { "chat_id": "env:CLEMENT_TG_CHAT_ID" },
+      "email": "env:CLEMENT_EMAIL",
+      "whatsapp": "env:CLEMENT_WA_NUMBER",
+      "phone": "env:CLEMENT_PHONE"
+    }
+  },
+  "discussions": {
+    "enabled": true,
+    "categories": [
+      "#decisions",
+      "#daily-standup",
+      "#incidents",
+      "#features",
+      "#architecture",
+      "#security",
+      "#scaling",
+      "#research",
+      "#customer",
+      "#ops",
+      "#product",
+      "#roadmap"
+    ]
+  },
+  "maturity": {
+    "stage": 2,
+    "label": "early-product",
+    "users": "~50",
+    "orgs": 14,
+    "channels": ["telegram", "whatsapp", "api"],
+    "last_assessed": "2026-03-29",
+    "notes": "Pre-PMF. 14 active orgs, 3 channels. DDD architecture in place. No replicas, no sharding, no caching layer. Single Railway instance. Supabase managed PostgreSQL."
+  },
+  "agents": {
+    "github_accounts": "individual",
+    "naming_pattern": "hive-{codename}"
+  }
+}

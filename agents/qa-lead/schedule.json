@@ -1,0 +1,17 @@
+{
+  "agent": "qa-lead",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "daily-qa-checkpoint",
+      "cron": "0 14 * * 1-5",
+      "description": "Weekdays 14:00 — coverage analysis, regression scan, quality checkpoint"
+    },
+    {
+      "name": "on-push-validation",
+      "cron": null,
+      "trigger": "on-push",
+      "description": "Triggered on push — validate test suite passes, check coverage delta"
+    }
+  ]
+}

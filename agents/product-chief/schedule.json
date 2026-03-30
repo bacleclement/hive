@@ -1,0 +1,16 @@
+{
+  "agent": "product-chief",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "product-pulse",
+      "cron": "0 9 * * 1-5",
+      "description": "Weekdays 09:00 — morning scan of metrics, feedback, competitor activity"
+    },
+    {
+      "name": "roadmap-contribution",
+      "cron": "0 10 * * 1",
+      "description": "Monday 10:00 — weekly roadmap review, backlog re-scoring, priority update"
+    }
+  ]
+}

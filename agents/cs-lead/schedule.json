@@ -1,0 +1,11 @@
+{
+  "agent": "cs-lead",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "weekly-health-review",
+      "cron": "0 9 * * 3",
+      "description": "Wednesday 09:00 — deep-dive into customer health scores, churn risk, expansion pipeline"
+    }
+  ]
+}

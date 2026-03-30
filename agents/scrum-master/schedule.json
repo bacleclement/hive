@@ -1,0 +1,26 @@
+{
+  "agent": "scrum-master",
+  "timezone": "Europe/Paris",
+  "schedules": [
+    {
+      "name": "daily-standup",
+      "cron": "30 8 * * 1-5",
+      "description": "Weekdays 08:30 — collect agent statuses, compile standup, flag blockers"
+    },
+    {
+      "name": "eod-wrap",
+      "cron": "0 17 * * 1-5",
+      "description": "Weekdays 17:00 — end-of-day summary: shipped, blocked, tomorrow's priorities"
+    },
+    {
+      "name": "sprint-planning",
+      "cron": "0 9 * * 1",
+      "description": "Monday 09:00 — propose sprint goals, review backlog with CTO"
+    },
+    {
+      "name": "sprint-review-retro",
+      "cron": "0 16 * * 5",
+      "description": "Friday 16:00 — sprint review (what shipped vs planned) + retrospective"
+    }
+  ]
+}

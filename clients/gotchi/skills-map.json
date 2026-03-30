@@ -1,0 +1,53 @@
+{
+  "description": "Maps client-specific skills from gotchi repo to hive agents",
+  "skills": {
+    "brainstorm": {
+      "path": ".claude/skills/brainstorm/SKILL.md",
+      "agents": ["cto", "product-chief", "innovator"]
+    },
+    "refine": {
+      "path": ".claude/skills/refine/SKILL.md",
+      "agents": ["product-chief", "architect"]
+    },
+    "align": {
+      "path": ".claude/skills/align/SKILL.md",
+      "agents": ["architect"]
+    },
+    "build-plan": {
+      "path": ".claude/skills/build-plan/SKILL.md",
+      "agents": ["cto", "architect"]
+    },
+    "implement": {
+      "path": ".claude/skills/implement/SKILL.md",
+      "agents": ["sr-backend", "sr-ai"]
+    },
+    "tdd": {
+      "path": ".claude/skills/tdd/SKILL.md",
+      "agents": ["sr-backend", "sr-ai", "qa-lead"]
+    },
+    "debug": {
+      "path": ".claude/skills/debug/SKILL.md",
+      "agents": ["sr-backend", "obs-chief", "support"]
+    },
+    "verify": {
+      "path": ".claude/skills/verify/SKILL.md",
+      "agents": ["qa-lead"]
+    },
+    "orchestrate": {
+      "path": ".claude/skills/orchestrate/SKILL.md",
+      "agents": ["cto", "scrum-master"]
+    },
+    "prod-check": {
+      "path": ".claude/skills/prod-check/SKILL.md",
+      "agents": ["obs-chief", "devops"]
+    },
+    "org-onboard": {
+      "path": ".claude/skills/org-onboard/SKILL.md",
+      "agents": ["account-mgr"]
+    },
+    "clean-database": {
+      "path": ".claude/skills/clean-database/SKILL.md",
+      "agents": ["devops"]
+    }
+  }
+}
