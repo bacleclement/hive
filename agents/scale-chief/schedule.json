@@ -3,14 +3,9 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "perf-check",
-      "cron": "22 */4 * * *",
-      "description": "Every 4 hours at :22 — slow query scan, connection pool health, latency trends"
-    },
-    {
-      "name": "weekly-perf-review",
+      "name": "weekly",
       "cron": "0 10 * * 4",
-      "description": "Thursday 10:00 — deep performance review, regression detection, index analysis"
+      "description": "Thursday 10:00 — weekly performance review and capacity planning"
     }
   ]
 }

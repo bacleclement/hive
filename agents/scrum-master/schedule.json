@@ -3,24 +3,19 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "daily-standup",
+      "name": "standup",
       "cron": "30 8 * * 1-5",
-      "description": "Weekdays 08:30 — collect agent statuses, compile standup, flag blockers"
+      "description": "Weekdays 08:30 — morning standup compilation"
     },
     {
-      "name": "eod-wrap",
+      "name": "eod",
       "cron": "0 17 * * 1-5",
-      "description": "Weekdays 17:00 — end-of-day summary: shipped, blocked, tomorrow's priorities"
+      "description": "Weekdays 17:00 — end-of-day wrap"
     },
     {
-      "name": "sprint-planning",
-      "cron": "0 9 * * 1",
-      "description": "Monday 09:00 — propose sprint goals, review backlog with CTO"
-    },
-    {
-      "name": "sprint-review-retro",
+      "name": "weekly",
       "cron": "0 16 * * 5",
-      "description": "Friday 16:00 — sprint review (what shipped vs planned) + retrospective"
+      "description": "Friday 16:00 — sprint review + retro + next sprint planning"
     }
   ]
 }

@@ -3,9 +3,9 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "weekly-docs-refresh",
+      "name": "weekly",
       "cron": "0 16 * * 5",
-      "description": "Friday 16:00 — audit all docs, update stale entries, generate changelog, report to #daily-standup"
+      "description": "Friday 16:00 — docs audit, changelog, FAQ extraction"
     }
   ]
 }

@@ -3,9 +3,9 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "weekly-ideation",
+      "name": "weekly",
       "cron": "0 10 * * 1",
-      "description": "Monday 10:00 — weekly innovation session: review inputs, generate ideas, score and rank"
+      "description": "Monday 10:00 — weekly ideation, feature proposals"
     }
   ]
 }

@@ -3,24 +3,14 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "main-cycle",
-      "cron": "0 */2 * * *",
-      "description": "Every 2 hours — read discussions, dispatch work, review approvals"
+      "name": "daily",
+      "cron": "0 9 * * 1-5",
+      "description": "Weekdays 09:00 — morning digest, health check, dispatch"
     },
     {
-      "name": "midday-sync",
-      "cron": "0 12 * * 1-5",
-      "description": "Weekdays 12:00 — sync with architect + sr-backend, unblock WIP"
-    },
-    {
-      "name": "sprint-planning",
-      "cron": "0 9 * * 1",
-      "description": "Monday 09:00 — set sprint goals, assign week's priorities"
-    },
-    {
-      "name": "roadmap-review",
-      "cron": "0 9 1 * *",
-      "description": "1st of month 09:00 — quarterly roadmap check"
+      "name": "weekly",
+      "cron": "30 9 * * 1",
+      "description": "Monday 09:30 — sprint planning, roadmap review, priority setting"
     }
   ]
 }

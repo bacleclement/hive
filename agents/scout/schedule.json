@@ -3,19 +3,9 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "morning-scan",
-      "cron": "0 8 * * *",
-      "description": "Daily 08:00 — morning market scan: competitor updates, industry news"
-    },
-    {
-      "name": "evening-scan",
-      "cron": "0 20 * * *",
-      "description": "Daily 20:00 — evening market scan: US market activity, late-breaking news"
-    },
-    {
-      "name": "weekly-deep-scan",
-      "cron": "0 10 * * 6",
-      "description": "Saturday 10:00 — comprehensive scan: broader market, adjacent industries, emerging tech"
+      "name": "daily",
+      "cron": "30 9 * * 1-5",
+      "description": "Weekdays 09:30 — market scan (deep scan on Mondays)"
     }
   ]
 }

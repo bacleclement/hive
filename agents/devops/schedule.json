@@ -3,20 +3,9 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "health-check",
-      "cron": "15 */4 * * *",
-      "description": "Every 4 hours at :15 — Railway, Supabase, DNS, backup status"
-    },
-    {
-      "name": "post-deploy-smoke",
-      "cron": null,
-      "trigger": "on-deploy",
-      "description": "Triggered after deployment — smoke test critical paths"
-    },
-    {
-      "name": "weekly-infra-audit",
+      "name": "weekly",
       "cron": "0 10 * * 3",
-      "description": "Wednesday 10:00 — resource utilization, cost review, scaling headroom"
+      "description": "Wednesday 10:00 — infrastructure audit, health check, cost review"
     }
   ]
 }

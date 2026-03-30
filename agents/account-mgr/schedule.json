@@ -3,14 +3,9 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "weekly-engagement-review",
-      "cron": "0 10 * * 3",
-      "description": "Wednesday 10:00 — review engagement after CS Lead's health review, draft outreach for flagged orgs"
+      "name": "weekly",
+      "cron": "0 11 * * 3",
+      "description": "Wednesday 11:00 — engagement review, outreach drafts"
     }
-  ],
-  "dispatch": {
-    "triggered_by": "system",
-    "via": "signup event (new org creation)",
-    "description": "Account Manager is also triggered on new org signup events to run onboarding checks."
-  }
+  ]
 }

@@ -3,9 +3,9 @@
   "timezone": "Europe/Paris",
   "schedules": [
     {
-      "name": "weekly-health-review",
-      "cron": "0 9 * * 3",
-      "description": "Wednesday 09:00 — deep-dive into customer health scores, churn risk, expansion pipeline"
+      "name": "weekly",
+      "cron": "30 10 * * 3",
+      "description": "Wednesday 10:30 — customer health scoring, churn detection"
     }
   ]
 }
