@@ -1,14 +1,12 @@
 # dispatch — Reactive Event Dispatcher
 
 ## When to Use
-Runs every 30 minutes. Polls GH Discussions for new or updated posts, dispatches relevant agent personas to react with comments.
+Runs every 30 minutes. Polls GH Discussions for new or updated posts. Two phases: agents react with comments, then take actions (create/update issues, propose priorities).
 
 ## Why
-Agents shouldn't just broadcast reports — they should read and react to each other's work. The dispatcher bridges scheduled agents with reactive behavior.
+Agents shouldn't just broadcast reports — they should read, react, and drive work forward. The dispatcher turns insights into tracked work items.
 
 ## State Tracking
-
-The dispatcher maintains a state file to know what it already processed:
 
 ```
 .claude/hive/dispatcher-state.json
@@ -17,7 +15,8 @@ The dispatcher maintains a state file to know what it already processed:
     "D_abc123": {
       "processed_at": "2026-03-31T10:30:00Z",
       "updated_at": "2026-03-31T10:00:00Z",
-      "agents_dispatched": ["architect", "product-chief"]
+      "agents_dispatched": ["architect", "product-chief"],
+      "actions_taken": ["commented-on-#27", "created-#40", "proposed-priority-#decisions"]
     }
   }
 }
@@ -25,14 +24,12 @@ The dispatcher maintains a state file to know what it already processed:
 
 A discussion needs processing when:
 - Its ID is NOT in the state file (new post)
-- Its `updatedAt` in GitHub > `updated_at` in state file (edited or new non-agent comment)
+- Its `updatedAt` in GitHub > `updated_at` in state file (edited or new human comment)
 
 ## Anti-Loop Rules
-- NEVER react to posts that contain `*Dispatched to:` in comments (already processed)
-- NEVER react to posts where ALL recent comments start with `**` (agent-generated)
-- NEVER react to your own dispatcher comments
-- NEVER create new discussions — only comment on existing ones
+- NEVER react to posts that contain `🐝` receipt comments AND no new human content since
 - NEVER react to #daily-standup posts
+- NEVER create new discussions — only comment on existing ones (except #decisions proposals)
 - If no unprocessed discussions found, exit silently (no output)
 
 ## Procedure
@@ -43,8 +40,6 @@ Read `.claude/hive/dispatcher-state.json`. If it doesn't exist, create it with `
 
 ### Step 2: Fetch Recent Discussions
 
-Read the 20 most recently updated discussions:
-
 ```bash
 gh api graphql -f query='{ repository(owner: "{owner}", name: "{repo}") { discussions(first: 20, orderBy: {field: UPDATED_AT, direction: DESC}) { nodes { id number title body category { name } createdAt updatedAt author { login } comments(last: 5) { nodes { body createdAt author { login } } } } } } }'
 ```
@@ -52,11 +47,12 @@ gh api graphql -f query='{ repository(owner: "{owner}", name: "{repo}") { discus
 ### Step 3: Filter to Unprocessed
 
 For each discussion:
-1. Check if `id` is in state file
-2. If NOT in state → needs processing (new)
-3. If in state but `updatedAt` > `state.updated_at` → check if update is from a human (not an agent comment). If yes → needs re-processing
-4. If in state and `updatedAt` == `state.updated_at` → skip
-5. If category is `daily-standup` → always skip
+1. If category is `daily-standup` → SKIP always
+2. If `id` NOT in state → needs processing (new)
+3. If `id` in state but `updatedAt` > state `updated_at` → check if update is from a human. If yes → re-process
+4. If `id` in state and same `updatedAt` → skip
+
+If nothing to process → exit silently.
 
 ### Step 4: Route to Agents
 
@@ -77,71 +73,193 @@ For each unprocessed discussion, check its category:
 #daily-standup   → NO REACTION
 ```
 
-### Step 5: React as Each Agent
+---
+
+## PHASE 1: REACT
+
+### Step 5: Comment as Each Agent
 
 For each triggered agent, adopt their persona and produce a comment.
 
-Agent perspectives (key traits):
+Agent perspectives:
 - **CTO**: strategic trade-offs, maturity-stage fit, priority impact
 - **Architect**: DDD patterns, layer boundaries, bounded context concerns
-- **Sec Chief**: attack vectors, OWASP, auth implications, data exposure
-- **Obs Chief**: monitoring needs, observability gaps, metric impact
-- **Scale Chief**: performance impact, capacity concerns, query patterns
-- **Product Chief**: user value, RICE scoring, competitive context, feature opportunity
-- **DevOps**: infra impact, deploy risk, cost, operational burden
-- **QA Lead**: test coverage needs, regression risk
-- **Innovator**: creative alternatives, adjacent opportunities, feasibility
+- **Sec Chief**: attack vectors, OWASP, auth implications
+- **Obs Chief**: monitoring needs, observability gaps
+- **Scale Chief**: performance impact, capacity concerns
+- **Product Chief**: user value, RICE scoring, competitive context, feature signals
+- **DevOps**: infra impact, deploy risk, cost
+- **Innovator**: creative alternatives, adjacent opportunities
 - **CS Lead**: customer impact, churn risk, engagement signal
 - **Account Mgr**: per-org engagement, outreach opportunity
-- **Scrum Master**: sprint impact, process implications, velocity effect
-- **Data Analyst**: data patterns, cross-agent correlation, metric anomalies
-- **Sr AI**: LLM cost impact, prompt implications, model considerations
+- **Scrum Master**: sprint impact, process implications
+- **Data Analyst**: data patterns, cross-agent correlation
+- **Sr AI**: LLM cost impact, prompt implications
 
 **Comment rules:**
-- Keep it SHORT (3-5 sentences max)
-- Only comment if you have something RELEVANT to add
-- Don't just agree — add new information or flag a concern
-- Start with `**{Agent Role}:**` so it's clear who's speaking
-- Don't repeat what the original post already says
-- If the post doesn't concern this agent, SKIP (no comment)
-- Maximum 3 agent comments per discussion
+- SHORT: 3-5 sentences max
+- Start with `**{Role}:**`
+- Only comment if you add NEW information or flag a concern
+- Skip if the post doesn't concern this agent
+- Max 3 agent comments per discussion
 
-### Step 6: Post Comments + Dispatcher Receipt
-
-For each agent reaction, post as a comment:
-
+Post each comment:
 ```bash
-gh api graphql -f query='mutation { addDiscussionComment(input: { discussionId: "{discussion_id}", body: "{comment}" }) { comment { id url } } }'
+gh api graphql -f query='mutation { addDiscussionComment(input: { discussionId: "{id}", body: "{comment}" }) { comment { url } } }'
 ```
 
-After ALL agent comments are posted for a discussion, add a dispatcher receipt comment:
+---
 
+## PHASE 2: ACT
+
+After commenting, each agent with action authority checks if work items should be created or updated.
+
+### Step 6: Extract Signals
+
+From the discussion content, identify:
+- **Pain points** — user frustrations, workarounds, complaints
+- **Feature requests** — explicit ("I wish I could...") or implicit (workflow gaps)
+- **Bug reports** — something broken or unexpected
+- **Competitive mentions** — "I currently use X for that"
+- **Priority signals** — intensity of need, frequency of mention
+
+### Step 7: Cross-Reference with Backlog
+
+For each signal, check existing GH Issues:
 ```bash
-gh api graphql -f query='mutation { addDiscussionComment(input: { discussionId: "{discussion_id}", body: "🐝 *Dispatched to: {agent1}, {agent2}, {agent3}*" }) { comment { id } } }'
+gh issue list --repo {owner}/{repo} --limit 50 --state open --json number,title,labels,body
 ```
 
-### Step 7: Update State
+Determine:
+- Does an issue already exist for this signal? → **update it**
+- Is this a new need with no existing issue? → **create one**
+- Does this signal change priority of existing work? → **propose change**
+- Does this have security implications? → **flag immediately**
+
+### Step 8: Take Actions
+
+**Authority matrix — who can do what:**
+
+| Agent | Comment | Create issue | Update issue | Propose priority | Auto-escalate |
+|-------|---------|-------------|-------------|-----------------|---------------|
+| CTO | ✅ | ✅ | ✅ | ✅ (decides) | — |
+| Product Chief | ✅ | ✅ (idea/feature) | ✅ (add signal) | ✅ (proposes) | — |
+| Architect | ✅ | ✅ (tech-debt) | ✅ (add concern) | ❌ | ✅ (arch violation) |
+| Sec Chief | ✅ | ✅ (security bug) | ✅ (add finding) | ✅ (P0 security) | ✅ (critical vuln) |
+| CS Lead | ✅ | ❌ | ✅ (add signal) | ❌ | ✅ (churn risk) |
+| Account Mgr | ✅ | ❌ | ❌ | ❌ | ❌ |
+| All others | ✅ | ❌ | ✅ (add signal) | ❌ | ✅ (in their domain) |
+
+**Action types:**
+
+#### A. Add signal to existing issue
+When a signal matches an existing issue, comment on that issue:
+```bash
+gh issue comment {number} --repo {owner}/{repo} --body "📡 **Signal from {source}:** {evidence}
+
+Source: {discussion_url}
+Strength: {n} users now mentioning this"
+```
+
+#### B. Create new issue
+When a signal has no matching issue and is actionable:
+```bash
+gh issue create --repo {owner}/{repo} --title "{title}" --label "{label}" --body "{body}"
+```
+Then add to project board:
+```bash
+gh project item-add {project_number} --owner {owner} --url {issue_url}
+```
+
+**Rules for new issues:**
+- Label: `idea` (unvalidated), `feature` (validated need), `bug`, `tech-debt`
+- Default priority: P2 (unless security → P0)
+- Default size: needs estimation
+- Body must include: signal source, evidence, proposed scope
+
+#### C. Propose priority change
+When 3+ users mention the same need, or a signal is urgent:
+
+Post to #decisions:
+```bash
+gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "{repo_id}", categoryId: "{decisions_cat_id}", title: "Priority Proposal: #{number} {current} → {proposed}", body: "{rationale}" }) { discussion { url } } }'
+```
+
+Format:
+```markdown
+## Priority Proposal: #{number} {title}
+
+**Current:** {P1/P2}
+**Proposed:** {P0/P1}
+
+### Evidence
+- {user1} mentioned this in interview ({date}) — {link}
+- {user2} asked about this via bot ({date})
+- {user3} competitive pressure: {competitor} launched this
+
+### Signal Strength
+{n} users, {frequency}, {intensity}
+
+### Impact if we don't act
+{what happens if we defer}
+
+---
+*Proposed by: Product Chief | Awaiting CTO review*
+```
+
+#### D. Escalate
+For critical issues (security vulnerability, churn risk, production incident):
+
+Post to #decisions with urgency:
+```bash
+gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "{repo_id}", categoryId: "{decisions_cat_id}", title: "⚠️ ESCALATION: {description}", body: "{details}" }) { discussion { url } } }'
+```
+
+---
+
+### Step 9: Post Receipt
+
+After all comments AND actions, post the receipt:
+
+```bash
+gh api graphql -f query='mutation { addDiscussionComment(input: { discussionId: "{id}", body: "🐝 *Dispatched to: {agents}*\n📋 *Actions: {action_summary}*" }) { comment { url } } }'
+```
+
+Receipt format:
+```
+🐝 *Dispatched to: CS Lead, Product Chief, Account Mgr*
+📋 *Actions:*
+- *Updated #27 — added interview signal (3rd user mention)*
+- *Created #40 — WeChat contact import (idea, P2)*
+- *Priority proposal: #27 P1→P0 posted to #decisions*
+```
+
+If no actions were taken:
+```
+🐝 *Dispatched to: CS Lead, Product Chief, Account Mgr*
+📋 *Actions: none — analysis only*
+```
+
+### Step 10: Update State
 
 Update `.claude/hive/dispatcher-state.json` with:
 - Discussion ID
-- Current `updatedAt` from GitHub
+- Current `updatedAt`
 - Timestamp of processing
-- List of agents dispatched
+- Agents dispatched
+- Actions taken (list of strings)
 
-Write the updated state file.
+### Step 11: Summary
 
-### Step 8: Summary
-
-If any reactions were posted:
 ```
-Dispatcher: processed {n} discussions, posted {m} agent comments
+Dispatcher: processed {n} discussions, {m} comments, {k} actions ({action_types})
 ```
-If nothing to process, exit silently.
 
 ## Constraints
-- Do NOT create new discussions — only comment
-- Do NOT react to #daily-standup
 - Do NOT write code or create PRs
-- Do NOT modify any files except .claude/hive/dispatcher-state.json
-- Maximum 3 agent reactions per discussion
-- If unsure whether to comment, don't
+- Do NOT modify files except .claude/hive/dispatcher-state.json
+- Do NOT react to #daily-standup
+- Maximum 3 agent comments per discussion
+- New issues default to P2 (never auto-assign P0 unless security)
+- Priority changes are PROPOSALS — CTO decides
+- Never auto-send emails or messages to users (drafts only, human approves)
