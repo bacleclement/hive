@@ -23,8 +23,8 @@ Read `clients/{project}/config.json` for project details. Key fields:
 ## Procedure
 
 1. **Read inputs:**
-   - Read `agents/devrel/context.md` for current stale docs list, FAQ backlog, changelog backlog
-   - Read `agents/support/context.md` for common issues indicating docs gaps (if exists)
+   - Read `.claude/hive/context/devrel.md` for current stale docs list, FAQ backlog, changelog backlog
+   - Read `.claude/hive/context/support.md` for common issues indicating docs gaps (if exists)
    - List recent GH Discussions across ALL categories — scan for FAQ patterns and confusion signals
    - List recent GH Discussions in `#features` for new feature announcements needing docs
    - List recent GH Discussions in `#incidents` for resolved incidents revealing docs gaps
@@ -48,7 +48,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Focus on "what changed and why it matters to users"
 
 5. **Update context:**
-   - Write updated stale docs list, FAQ patterns, and changelog backlog to `agents/devrel/context.md`
+   - Write updated stale docs list, FAQ patterns, and changelog backlog to `.claude/hive/context/devrel.md`
 
 6. **Post report to GH Discussions (#daily-standup)**
 
@@ -99,7 +99,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/devrel/context.md`
+- Do NOT modify files except `.claude/hive/context/devrel.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - Do NOT modify application code — engineering only

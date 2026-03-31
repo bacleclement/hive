@@ -83,8 +83,8 @@ Ensure every layer of the system is hardened against known attack vectors, secre
 1. `adapter:security.secrets` — gitleaks scan results
 2. `pnpm audit` / `snyk` — dependency vulnerability report
 3. `adapter:security.auth` — current RLS policies and auth config
-4. `agents/sec-chief/context.md` — CVE inventory, known risks, last audit dates
-5. `agents/devops/context.md` — recent deploys (new attack surface)
+4. `.claude/hive/context/sec-chief.md` — CVE inventory, known risks, last audit dates
+5. `.claude/hive/context/devops.md` — recent deploys (new attack surface)
 6. GH Discussions `#security` — open security threads
 7. GH Discussions `#incidents` — active incidents with security implications
 
@@ -127,7 +127,7 @@ Ensure every layer of the system is hardened against known attack vectors, secre
 
 ## Context Template
 
-The Sec Chief maintains `context.md` with:
+The Sec Chief maintains `.claude/hive/context/sec-chief.md` with:
 
 ```markdown
 ## CVE Inventory

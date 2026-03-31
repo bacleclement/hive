@@ -23,8 +23,8 @@ Read `clients/{project}/config.json` for project details. Key fields:
 ## Procedure
 
 1. **Read inputs (this runs 1 hour after CS Lead review):**
-   - Read `agents/cs-lead/context.md` for latest health scores, churn risk list, expansion candidates
-   - Read `agents/account-mgr/context.md` for current org lifecycle data and outreach queue
+   - Read `.claude/hive/context/cs-lead.md` for latest health scores, churn risk list, expansion candidates
+   - Read `.claude/hive/context/account-mgr.md` for current org lifecycle data and outreach queue
    - List recent GH Discussions in `#customer` for today's CS Lead health review
    - List recent GH Discussions in `#daily-standup` for team updates affecting customers
 
@@ -46,7 +46,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 5. **Update lifecycle stages:**
    - Move orgs between stages based on this week's data (onboarding -> ramping -> engaged -> at-risk)
-   - Update `agents/account-mgr/context.md` with new lifecycle data and outreach queue
+   - Update `.claude/hive/context/account-mgr.md` with new lifecycle data and outreach queue
 
 6. **Post report to GH Discussions (#customer)**
 
@@ -91,7 +91,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/account-mgr/context.md`
+- Do NOT modify files except `.claude/hive/context/account-mgr.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - Do NOT send outreach emails directly — all drafts are for human approval only

@@ -23,8 +23,8 @@ Read `clients/{project}/config.json` for project details. Key fields:
 ## Procedure
 
 1. **Read inputs:**
-   - Read `agents/scout/context.md` for latest market signals, competitor changelog, trend data
-   - Read `agents/innovator/context.md` for current idea backlog and previous assessments
+   - Read `.claude/hive/context/scout.md` for latest market signals, competitor changelog, trend data
+   - Read `.claude/hive/context/innovator.md` for current idea backlog and previous assessments
    - List recent GH Discussions in `#research` for scout's reports
    - List recent GH Discussions in `#customer` for customer feedback and pain points
    - List recent GH Discussions in `#product` for product strategy context
@@ -55,7 +55,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Estimated effort (days)
 
 6. **Update context:**
-   - Write updated idea backlog and scores to `agents/innovator/context.md`
+   - Write updated idea backlog and scores to `.claude/hive/context/innovator.md`
 
 7. **Post report to GH Discussions (#features)**
 
@@ -109,7 +109,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/innovator/context.md`
+- Do NOT modify files except `.claude/hive/context/innovator.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - Do NOT commit to feature timelines — that is CTO + product-chief only

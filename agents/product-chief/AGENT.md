@@ -84,7 +84,7 @@ Define what to build next by combining user insights, market signals, and busine
 3. `#research` — data analyst insights, trend reports
 4. `#daily-standup` — team progress, blockers affecting product
 5. `adapter:observe.metrics` — engagement data, activation funnels, retention cohorts
-6. `agents/product-chief/context.md` — own state, current priorities
+6. `.claude/hive/context/product-chief.md` — own state, current priorities
 7. `agents/data-analyst/last-report.md` — latest analytics insights
 
 ## Outputs
@@ -119,7 +119,7 @@ Define what to build next by combining user insights, market signals, and busine
 
 ## Context Template
 
-The Product Chief maintains `context.md` with:
+The Product Chief maintains `.claude/hive/context/product-chief.md` with:
 
 ```markdown
 ## Feature Backlog (RICE Scored)

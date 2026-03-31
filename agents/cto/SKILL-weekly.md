@@ -33,7 +33,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Calculate completion rate (delivered/planned as %)
 
 2. **Read current state:**
-   - Read `agents/*/context.md` for all agent states and current work
+   - Read `.claude/hive/context/*.md` for all agent states and current work
    - Read `.claude/TODOS.md` in client repo for task board state (if exists)
    - Run `gh issue list` for open issues
    - List recent GH Discussions in `#features` for approved features awaiting work
@@ -83,7 +83,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 ### Final Steps
 
 10. **Update context:**
-    - Write new sprint goals and assignments to `agents/cto/context.md`
+    - Write new sprint goals and assignments to `.claude/hive/context/cto.md`
     - If monthly review ran, include updated roadmap state and maturity assessment
 
 11. **Post sprint plan to GH Discussions (#roadmap)**. If monthly review ran, include it in the same post.
@@ -185,7 +185,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/cto/context.md`
+- Do NOT modify files except `.claude/hive/context/cto.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - Do NOT overcommit — 3-5 goals max per sprint

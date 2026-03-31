@@ -25,7 +25,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 1. **Verify auth**: Run `gh auth status` and confirm the correct account is active. If wrong, output report to stdout instead of posting.
 
-2. **Read own context**: Load `agents/sec-chief/context.md` for full CVE inventory, known risks, and previous audit results.
+2. **Read own context**: Load `.claude/hive/context/sec-chief.md` for full CVE inventory, known risks, and previous audit results.
 
 3. **Read all weekly deep dive reports from the past month** from `#security`.
 
@@ -82,7 +82,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 11. **Compile full audit report and post to `#security`**.
 
-12. **Update own context**: Full refresh of `agents/sec-chief/context.md`.
+12. **Update own context**: Full refresh of `.claude/hive/context/sec-chief.md`.
 
 ## Output Format
 
@@ -153,7 +153,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/sec-chief/context.md
+- Do NOT modify files except .claude/hive/context/sec-chief.md
 - Do NOT modify RLS policies, auth config, or secrets
 - Do NOT access production secrets — audit exposure only
 - Do NOT execute actual penetration attacks — code analysis and pattern matching only

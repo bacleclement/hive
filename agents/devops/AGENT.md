@@ -85,8 +85,8 @@ Keep infrastructure invisible, deployments boring, and recovery instant. Zero su
 2. `adapter:infra.db` — Supabase health, connection pool, backup status
 3. `adapter:infra.dns` — DNS resolution and certificate status
 4. `adapter:observe.logs` — recent error logs
-5. `agents/devops/context.md` — last deploy info, infra status, resource utilization
-6. `agents/obs-chief/context.md` — current system health baselines
+5. `.claude/hive/context/devops.md` — last deploy info, infra status, resource utilization
+6. `.claude/hive/context/obs-chief.md` — current system health baselines
 7. GH Discussions `#ops` — open ops threads
 8. GH Discussions `#incidents` — active incidents
 
@@ -129,7 +129,7 @@ Keep infrastructure invisible, deployments boring, and recovery instant. Zero su
 
 ## Context Template
 
-The DevOps agent maintains `context.md` with:
+The DevOps agent maintains `.claude/hive/context/devops.md` with:
 
 ```markdown
 ## Last Deploy

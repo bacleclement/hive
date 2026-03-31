@@ -28,9 +28,9 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 1. **Verify auth**: Run `gh auth status` and confirm the correct account is active. If wrong, output report to stdout instead of posting.
 
-2. **Read own context**: Load `agents/obs-chief/context.md` for baseline values, open incidents, and known issues.
+2. **Read own context**: Load `.claude/hive/context/obs-chief.md` for baseline values, open incidents, and known issues.
 
-3. **Read DevOps context**: Load `agents/devops/context.md` for recent deploys — a recent deploy changes anomaly interpretation.
+3. **Read DevOps context**: Load `.claude/hive/context/devops.md` for recent deploys — a recent deploy changes anomaly interpretation.
 
 4. **Scan overnight logs** (from previous evening to now):
    - Use the project's log adapter
@@ -44,7 +44,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 6. **Check for overnight incidents**: Scan `#incidents` for any threads created or updated since last check.
 
-7. **Check overnight deploys**: Read `agents/devops/context.md` — did anything deploy overnight?
+7. **Check overnight deploys**: Read `.claude/hive/context/devops.md` — did anything deploy overnight?
 
 8. **METRICS — Check current health**:
    - Active connections vs pool limit
@@ -53,7 +53,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - P95 latency trend
 
 9. **COMPARE — Baseline deviation check**:
-   - For each metric in context.md baselines, compare current value
+   - For each metric in context baselines, compare current value
    - Flag anything with > 20% deviation from 7-day rolling average
    - Compound anomalies (multiple metrics deviating) increase severity
 
@@ -86,7 +86,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 16. **Post report to `#daily-standup`**. This report should arrive before the Scrum Master's 08:30 standup so the team knows the production state.
 
-17. **Update own context**: Refresh baselines in `agents/obs-chief/context.md`. If Monday, refresh with this week's averages.
+17. **Update own context**: Refresh baselines in `.claude/hive/context/obs-chief.md`. If Monday, refresh with this week's averages.
 
 ## Output Format
 
@@ -165,6 +165,6 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/obs-chief/context.md
+- Do NOT modify files except .claude/hive/context/obs-chief.md
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead

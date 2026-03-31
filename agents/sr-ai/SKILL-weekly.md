@@ -26,7 +26,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 ## Procedure
 
-1. **Read own context** — Load `agents/sr-ai/context.md` for full prompt registry, cost baselines, accuracy benchmarks, and model comparisons
+1. **Read own context** — Load `.claude/hive/context/sr-ai.md` for full prompt registry, cost baselines, accuracy benchmarks, and model comparisons
 
 2. **Scan AI pipeline code** — Search the client repo codebase for:
    - All prompt definitions (system prompts, user prompts, tool descriptions)
@@ -82,7 +82,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - New prompt engineering techniques relevant to the pipeline
    - RAG improvements or embedding model updates
 
-9. **Update context.md** — Rewrite `agents/sr-ai/context.md` with:
+9. **Update context** — Rewrite `.claude/hive/context/sr-ai.md` with:
    - Updated "Cost per Operation" table
    - Updated "Prompt Registry" with audit scores
    - Updated "Accuracy Benchmarks" if new data available
@@ -147,7 +147,7 @@ Body format:
 
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/sr-ai/context.md`
+- Do NOT modify files except `.claude/hive/context/sr-ai.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - If no metrics adapter is available, analyze code-level token usage estimates instead

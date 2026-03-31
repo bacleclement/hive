@@ -35,7 +35,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Read `plan.md` fully — understand every task, dependency, and acceptance criteria
    - Read `spec.md` if it exists — understand the feature requirements
    - Read `docs/adr/*` — check for relevant architecture decisions
-   - Read `agents/sr-backend/context.md` — own state, patterns learned
+   - Read `.claude/hive/context/sr-backend.md` — own state, patterns learned
    - Search the codebase for existing patterns related to this feature:
      ```bash
      # Find related patterns
@@ -82,7 +82,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    ```
    ALL must pass. No exceptions.
 
-6. **Update context.md** — Write to `agents/sr-backend/context.md`:
+6. **Update context** — Write to `.claude/hive/context/sr-backend.md`:
    - Current task status
    - Add to "Recent Completions" table
    - Note any patterns learned

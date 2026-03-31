@@ -26,9 +26,9 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 1. **Verify auth**: Run `gh auth status` and confirm the correct account is active. If wrong, output report to stdout instead of posting.
 
-2. **Read own context**: Load `agents/scale-chief/context.md` for full performance baselines, slow query inventory, table sizes, capacity projections.
+2. **Read own context**: Load `.claude/hive/context/scale-chief.md` for full performance baselines, slow query inventory, table sizes, capacity projections.
 
-3. **Read Obs Chief and DevOps contexts**: Load `agents/obs-chief/context.md` for latency baselines and error rate trends. Load `agents/devops/context.md` for resource utilization — memory and CPU can indicate performance pressure.
+3. **Read Obs Chief and DevOps contexts**: Load `.claude/hive/context/obs-chief.md` for latency baselines and error rate trends. Load `.claude/hive/context/devops.md` for resource utilization — memory and CPU can indicate performance pressure.
 
 4. **Slow query scan**: Query `pg_stat_statements` (via project's metrics adapter) for:
    - Queries with mean_exec_time > 100ms
@@ -154,7 +154,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 15. **Post to `#scaling`**. If CRITICAL, also post to `#incidents`. If index recommendations affect architecture, also comment on `#architecture`.
 
-16. **Update own context**: Full refresh of `agents/scale-chief/context.md` — performance baselines, slow query list, table sizes, capacity projections.
+16. **Update own context**: Full refresh of `.claude/hive/context/scale-chief.md` — performance baselines, slow query list, table sizes, capacity projections.
 
 ## Output
 Post to GH Discussions category `#scaling` using:
@@ -165,7 +165,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/scale-chief/context.md
+- Do NOT modify files except .claude/hive/context/scale-chief.md
 - Do NOT create indexes or modify the database — recommend only
 - Do NOT execute write queries
 - Verify `gh auth status` uses the correct account before posting

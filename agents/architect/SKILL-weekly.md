@@ -28,7 +28,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 1. **Verify auth**: Run `gh auth status` and confirm the correct account is active. If wrong, output report to stdout instead of posting.
 
-2. **Read own context**: Load `agents/architect/context.md` for active ADRs, architectural concerns, and BC map.
+2. **Read own context**: Load `.claude/hive/context/architect.md` for active ADRs, architectural concerns, and BC map.
 
 3. **Read project architecture files**:
    - `docs/adr/*` — existing architecture decisions
@@ -202,7 +202,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 16. **Post to `#architecture`**. If any ADR changes, also post to `#decisions`.
 
-17. **Update own context**: Refresh BC map, architectural concerns, and pattern compliance in `agents/architect/context.md`.
+17. **Update own context**: Refresh BC map, architectural concerns, and pattern compliance in `.claude/hive/context/architect.md`.
 
 ## Output
 Post to GH Discussions category `#architecture` using:
@@ -213,7 +213,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/architect/context.md and docs/adr/*
+- Do NOT modify files except .claude/hive/context/architect.md and docs/adr/*
 - Do NOT reject CTO-approved features — raise concerns, accept decisions
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead

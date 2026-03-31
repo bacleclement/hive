@@ -23,9 +23,9 @@ Read `clients/{project}/config.json` for project details. Key fields:
 ## Procedure
 
 1. **Read inputs:**
-   - Read `agents/cs-lead/context.md` for current health scores and churn list
-   - Read `agents/account-mgr/context.md` for org lifecycle data
-   - Read `agents/support/context.md` for open ticket trends (if exists)
+   - Read `.claude/hive/context/cs-lead.md` for current health scores and churn list
+   - Read `.claude/hive/context/account-mgr.md` for org lifecycle data
+   - Read `.claude/hive/context/support.md` for open ticket trends (if exists)
    - List recent GH Discussions in `#customer` for account manager reports and feedback
    - List recent GH Discussions in `#product` for feature changes affecting customers
    - List recent GH Discussions in `#daily-standup` for team updates
@@ -48,7 +48,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Orgs with growing team size
 
 5. **Update context:**
-   - Write updated health scores, churn risk list, and expansion candidates to `agents/cs-lead/context.md`
+   - Write updated health scores, churn risk list, and expansion candidates to `.claude/hive/context/cs-lead.md`
 
 6. **Post report to GH Discussions (#customer)**
 
@@ -93,7 +93,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/cs-lead/context.md`
+- Do NOT modify files except `.claude/hive/context/cs-lead.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - Do NOT contact customers directly — that is the Account Manager's job

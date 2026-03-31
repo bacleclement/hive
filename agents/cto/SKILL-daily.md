@@ -31,7 +31,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Read `.claude/TODOS.md` for task board state (if exists in client repo)
    - Run `gh issue list` for open issues
    - List recent GH Discussions across ALL categories for new posts since last cycle
-   - Read `agents/*/context.md` for all agent states
+   - Read `.claude/hive/context/*.md` for all agent states
    - Read `agents/scrum-master/last-report.md` for latest standup (if exists)
    - Check `bridges/state/approval-queue.json` for pending approvals (if exists)
 
@@ -56,8 +56,8 @@ Read `clients/{project}/config.json` for project details. Key fields:
 ### Part 2: Agent Sync
 
 5. **Read agent work state:**
-   - Read `agents/architect/context.md` for architect's current work, blockers, proposals
-   - Read `agents/sr-backend/context.md` for sr-backend's current work, blockers, WIP
+   - Read `.claude/hive/context/architect.md` for architect's current work, blockers, proposals
+   - Read `.claude/hive/context/sr-backend.md` for sr-backend's current work, blockers, WIP
    - List GH Discussions posted today in `#daily-standup` for morning updates
    - List GH Discussions in `#architecture` for open architecture proposals
    - List GH Discussions in `#decisions` for pending decisions
@@ -139,7 +139,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/cto/context.md`
+- Do NOT modify files except `.claude/hive/context/cto.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - Do NOT trigger deployments without human approval

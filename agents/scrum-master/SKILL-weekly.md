@@ -59,7 +59,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    gh api graphql -f query='{ repository(owner: "{owner}", name: "{repo}") { discussions(categoryId: "DIC_kwDORHHHos4C5nbb", first: 20, orderBy: {field: CREATED_AT, direction: DESC}) { nodes { title body createdAt labels(first: 5) { nodes { name } } } } } }'
    ```
 
-10. **Check velocity history** from own `agents/scrum-master/context.md` sprint velocity table.
+10. **Check velocity history** from own `.claude/hive/context/scrum-master.md` sprint velocity table.
 
 11. **Read maturity stage**: At Stage 2, keep sprint planning light. Weekly cycles. No story points — just count items. Focus on shipping, not estimating.
 
@@ -67,7 +67,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 13. **Post combined review + retro + next sprint plan** to `#daily-standup`. Post retro action items and sprint goal separately to `#decisions`.
 
-14. **Update own context**: Update velocity table, ceremony log, and ceremony completion rates in `agents/scrum-master/context.md`.
+14. **Update own context**: Update velocity table, ceremony log, and ceremony completion rates in `.claude/hive/context/scrum-master.md`.
 
 ## Output Format
 
@@ -162,7 +162,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/scrum-master/context.md
+- Do NOT modify files except .claude/hive/context/scrum-master.md
 - Do NOT assign work to agents — propose owners, CTO confirms
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead

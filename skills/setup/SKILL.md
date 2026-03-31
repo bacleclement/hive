@@ -93,7 +93,39 @@ Each adapter file follows this format:
 {active | not-configured | blocked-by-#{issue}}
 ```
 
-### Step 4: Verify Environment
+### Step 4: Create Agent Context Files
+
+Create `.claude/hive/context/` with a context file for each active agent:
+
+```bash
+mkdir -p .claude/hive/context
+```
+
+For each agent that will be scheduled, create `.claude/hive/context/{agent-name}.md`:
+
+```markdown
+# {Agent Role} Context
+> Last updated: never (awaiting first run)
+
+## Key State
+_Empty — awaiting first run_
+```
+
+Agents read this file at the start of each run (memory from last session) and update it at the end. This provides continuity between runs.
+
+Active agents need context files:
+- `cto.md` — sprint goal, key signals, decisions pending, cost watch
+- `obs-chief.md` — metric baselines, open incidents, recent deploys
+- `sec-chief.md` — CVE inventory, audit dates, known risks
+- `scrum-master.md` — sprint status, velocity, blockers, ceremony log
+- `product-chief.md` — user signals, competitor watch, metrics
+
+Also create the dispatcher state file:
+```bash
+echo '{"processed": {}}' > .claude/hive/dispatcher-state.json
+```
+
+### Step 5: Verify Environment
 
 Check each adapter's env vars are set:
 ```bash
@@ -107,7 +139,7 @@ for var in RAILWAY_TOKEN SENTRY_DSN SUPABASE_ACCESS_TOKEN; do
 done
 ```
 
-### Step 5: Get GH Discussion Category IDs
+### Step 6: Get GH Discussion Category IDs
 
 ```bash
 gh api graphql -f query='{ repository(owner: "{owner}", name: "{repo}") {
@@ -120,31 +152,39 @@ gh api graphql -f query='{ repository(owner: "{owner}", name: "{repo}") {
 
 Store in config.json.
 
-### Step 6: Register Scheduled Tasks
+### Step 7: Register Scheduled Tasks
 
 Read all agent schedules from `~/Code/hive/agents/*/schedule.json`.
 For each schedule, read the corresponding `SKILL-*.md`.
 Create scheduled tasks via `create_scheduled_task`.
 
-### Step 7: Summary
+### Step 8: Summary
 
 Print what was created:
 ```
 .claude/hive/
-  config.json           ✅ Project: {name}, Stage: {stage}
+  config.json              ✅ Project: {name}, Stage: {stage}
+  dispatcher-state.json    ✅ Empty state
   adapters/
-    observe-logs.md     ✅ Railway
-    observe-errors.md   ⚠️ Needs SENTRY_DSN
-    observe-metrics.md  ✅ Supabase
+    observe-logs.md        ✅ Railway
+    observe-errors.md      ⚠️ Needs SENTRY_DSN
+    observe-metrics.md     ✅ Supabase
     ...
+  context/
+    cto.md                 ✅ Awaiting first run
+    obs-chief.md           ✅ Awaiting first run
+    sec-chief.md           ✅ Awaiting first run
+    scrum-master.md        ✅ Awaiting first run
+    product-chief.md       ✅ Awaiting first run
 
 Scheduled tasks: {n} created
-  cto-daily             ✅ weekdays 9:00
-  scrum-master-standup  ✅ weekdays 8:30
+  cto-daily                ✅ weekdays 9:00
+  scrum-master-standup     ✅ weekdays 8:30
+  hive-dispatcher          ✅ every 30 min weekdays
   ...
 
 Missing env vars:
-  SENTRY_DSN — set up Sentry first (#35)
+  SENTRY_DSN — set up Sentry first
 ```
 
 ## Constraints

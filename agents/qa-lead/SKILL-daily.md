@@ -26,7 +26,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 ## Procedure
 
-1. **Read own context** — Load `agents/qa-lead/context.md` for coverage trends, known flaky tests, quality metrics baselines
+1. **Read own context** — Load `.claude/hive/context/qa-lead.md` for coverage trends, known flaky tests, quality metrics baselines
 
 2. **Run test suites** — Execute all test suites across the monorepo:
    ```bash
@@ -49,7 +49,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Function coverage % per project
    - Overall coverage %
 
-4. **Detect regressions** — Compare against context.md baselines:
+4. **Detect regressions** — Compare against context baselines:
    - Coverage drops > 2% on any project = REGRESSION
    - New test failures since last checkpoint = REGRESSION
    - Test execution time increase > 20% = WARNING
@@ -78,7 +78,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Which features are being actively developed
    - Any features marked "complete" that need QA validation
 
-8. **Update context.md** — Write to `agents/qa-lead/context.md`:
+8. **Update context** — Write to `.claude/hive/context/qa-lead.md`:
    - Updated "Coverage Trends" table
    - Updated "Failing Tests" table
    - Updated "Flaky Tests" table
@@ -140,7 +140,7 @@ Body format:
 
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/qa-lead/context.md`
+- Do NOT modify files except `.claude/hive/context/qa-lead.md`
 - Do NOT delete or skip any tests
 - Do NOT modify production code
 - Verify `gh auth status` uses the correct account before posting

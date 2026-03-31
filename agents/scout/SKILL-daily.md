@@ -25,7 +25,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 ## Procedure
 
-1. **Read own context** — Load `agents/scout/context.md` for:
+1. **Read own context** — Load `.claude/hive/context/scout.md` for:
    - Competitor inventory (who to track)
    - Last scan results (what was found previously)
    - Market signals backlog
@@ -36,7 +36,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - **Folk** (folk.app) — CRM for relationship management
    - **Clay** (clay.com) — data enrichment and outreach
    - **Attio** (attio.com) — next-gen CRM
-   - Other competitors listed in context.md
+   - Other competitors listed in context
 
    Search queries:
    ```
@@ -71,7 +71,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Assess impact on our product (high / medium / low / none)
 
 6. **Cross-reference with existing signals** — Check if this finding:
-   - Confirms or contradicts an existing signal in context.md
+   - Confirms or contradicts an existing signal in context
    - Represents a new trend or a continuation of a known one
    - Connects to any feature requests in `#features`
 
@@ -118,7 +118,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
       - Rate trend strength and direction
       - Connect trends to product opportunities
 
-8. **Update context.md** — Write to `agents/scout/context.md`:
+8. **Update context** — Write to `.claude/hive/context/scout.md`:
    - Update "Competitor Changelog" with new findings
    - Update "Market Signals" with new signals
    - Update "Last Scan" table with today's scan
@@ -185,13 +185,13 @@ Body format (Monday deep scan — append these extra sections):
 3. {third most important}
 ```
 
-If no notable findings, update context.md with scan timestamp but do NOT post a discussion.
+If no notable findings, update `.claude/hive/context/scout.md` with scan timestamp but do NOT post a discussion.
 
 ## Constraints
 
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/scout/context.md`
+- Do NOT modify files except `.claude/hive/context/scout.md`
 - Do NOT contact external parties
 - Do NOT make commitments or promises
 - Do NOT publish anything externally

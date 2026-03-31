@@ -25,9 +25,9 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 1. **Verify auth**: Run `gh auth status` and confirm the correct account is active. If wrong, output report to stdout instead of posting.
 
-2. **Read own context**: Load `agents/devops/context.md` for current resource utilization baselines, last known infrastructure state, and recent deploys.
+2. **Read own context**: Load `.claude/hive/context/devops.md` for current resource utilization baselines, last known infrastructure state, and recent deploys.
 
-3. **Read cross-agent contexts**: Load `agents/obs-chief/context.md` for system health trends. Load `agents/scale-chief/context.md` for performance-related infrastructure concerns.
+3. **Read cross-agent contexts**: Load `.claude/hive/context/obs-chief.md` for system health trends. Load `.claude/hive/context/scale-chief.md` for performance-related infrastructure concerns.
 
 4. **Check Railway app status**:
    - Is the service running?
@@ -145,7 +145,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 14. **Post to `#ops`** (or `#incidents` if DOWN).
 
-15. **Update own context**: Full refresh of `agents/devops/context.md` — infrastructure status, resource utilization, backup status.
+15. **Update own context**: Full refresh of `.claude/hive/context/devops.md` — infrastructure status, resource utilization, backup status.
 
 ## Output
 Post to GH Discussions category `#ops` using:
@@ -156,7 +156,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/devops/context.md
+- Do NOT modify files except .claude/hive/context/devops.md
 - Do NOT execute deployments or rollbacks from this schedule
 - Do NOT execute scaling actions — recommend only, CTO approves
 - Verify `gh auth status` uses the correct account before posting

@@ -31,7 +31,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 ## Procedure
 
-1. **Read own context** — Load `agents/product-chief/context.md` for current priorities, backlog scores, competitor matrix, metrics watch, and feedback themes
+1. **Read own context** — Load `.claude/hive/context/product-chief.md` for current priorities, backlog scores, competitor matrix, metrics watch, and feedback themes
 
 2. **Scan GH Discussions for overnight activity** — Read new posts and comments since last pulse in:
    - `#features` — new feature requests or proposals
@@ -50,8 +50,8 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Error rates affecting user experience
 
 4. **Competitive quick scan** — Check for overnight competitor activity:
-   - Read `agents/scout/context.md` for latest scan results
-   - Read `agents/data-analyst/context.md` for latest insights
+   - Read `.claude/hive/context/scout.md` for latest scan results
+   - Read `.claude/hive/context/data-analyst.md` for latest insights
    - Note any competitor moves that affect current priorities
 
 5. **Synthesize feedback themes** — From discussions and metrics:
@@ -77,9 +77,9 @@ Read `clients/{project}/config.json` for project details. Key fields:
       ```
 
    b. **Read agent reports** — Check for cross-functional insights:
-      - `agents/data-analyst/context.md` — KPI trends, correlations, anomalies
-      - `agents/scout/context.md` — competitor updates, market signals
-      - `agents/qa-lead/context.md` — quality trends affecting user experience
+      - `.claude/hive/context/data-analyst.md` — KPI trends, correlations, anomalies
+      - `.claude/hive/context/scout.md` — competitor updates, market signals
+      - `.claude/hive/context/qa-lead.md` — quality trends affecting user experience
 
    c. **RICE score the backlog** — For every feature in the backlog:
       - **Reach**: How many users/orgs will this affect in the next quarter?
@@ -103,7 +103,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
       - Call out any priority changes from last week and why
       - Flag features that should be killed or deprioritized
 
-8. **Update context.md** — Write changes to `agents/product-chief/context.md`:
+8. **Update context** — Write changes to `.claude/hive/context/product-chief.md`:
    - Update "Metrics Watch" table
    - Update "User Feedback Themes" if new patterns found
    - Note any priority shifts
@@ -183,7 +183,7 @@ Body format (Monday — append these extra sections):
 
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/product-chief/context.md`
+- Do NOT modify files except `.claude/hive/context/product-chief.md`
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead
 - At Stage 2 maturity: listen to early users, focus on retention not growth, PMF above everything

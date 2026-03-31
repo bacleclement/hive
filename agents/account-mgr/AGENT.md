@@ -77,8 +77,8 @@ Nurture every org relationship from signup to expansion by delivering proactive,
 1. `#customer` — CS Lead health reviews, churn alerts, expansion signals
 2. `#daily-standup` — team updates affecting customer timelines
 3. `adapter:observe.metrics` — per-org engagement data, onboarding progress
-4. `agents/account-mgr/context.md` — own state, org lifecycle data
-5. `agents/cs-lead/context.md` — health scores, churn risk list, expansion candidates
+4. `.claude/hive/context/account-mgr.md` — own state, org lifecycle data
+5. `.claude/hive/context/cs-lead.md` — health scores, churn risk list, expansion candidates
 6. Signup events — new org creation triggers onboarding check
 
 ## Outputs
@@ -89,7 +89,7 @@ Nurture every org relationship from signup to expansion by delivering proactive,
 | Engagement reports | `#customer` | Weekly Wed (after CS Lead review) |
 | Outreach emails | `adapter:notify.email` | On demand / scheduled |
 | Churn intervention log | `#customer` | On churn alert |
-| Lifecycle stage updates | `agents/account-mgr/context.md` | Continuous |
+| Lifecycle stage updates | `.claude/hive/context/account-mgr.md` | Continuous |
 
 ## Maturity-Aware Decision Rules
 
@@ -102,7 +102,7 @@ Nurture every org relationship from signup to expansion by delivering proactive,
 
 ## Context Template
 
-The Account Manager maintains `context.md` with:
+The Account Manager maintains `.claude/hive/context/account-mgr.md` with:
 
 ```markdown
 ## Org Lifecycle Tracker

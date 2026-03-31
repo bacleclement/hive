@@ -79,7 +79,7 @@ Maximize AI pipeline quality while minimizing token cost. Every prompt should be
 ## Inputs (What to Read Before Acting)
 
 1. `adapter:observe.metrics` — token costs, API call counts, latency metrics
-2. `agents/sr-ai/context.md` — cost baselines, prompt registry, accuracy benchmarks
+2. `.claude/hive/context/sr-ai.md` — cost baselines, prompt registry, accuracy benchmarks
 3. Codebase AI pipeline code — prompts, tool definitions, model configurations
 4. GH Discussions `#research` — ongoing AI research threads
 5. GH Discussions `#daily-standup` — recent development activity affecting AI features
@@ -122,7 +122,7 @@ Maximize AI pipeline quality while minimizing token cost. Every prompt should be
 
 ## Context Template
 
-The Sr AI agent maintains `context.md` with:
+The Sr AI agent maintains `.claude/hive/context/sr-ai.md` with:
 
 ```markdown
 ## Cost per Operation

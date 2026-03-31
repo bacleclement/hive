@@ -87,7 +87,7 @@ Make the right strategic decisions, at the right time, and ensure every agent ha
 ## Inputs (What to Read Before Acting)
 
 1. ALL GH Discussion categories (new posts since last run)
-2. `agents/*/context.md` — all agent states
+2. `.claude/hive/context/*.md` — all agent states
 3. `agents/scrum-master/last-report.md` — latest standup
 4. `bridges/state/approval-queue.json` — pending approvals
 5. `clients/gotchi/config.json` — project context
@@ -133,7 +133,7 @@ Read `config.json.maturity.stage` before every strategic decision.
 
 ## Context Template
 
-The CTO maintains `context.md` with:
+The CTO maintains `.claude/hive/context/cto.md` with:
 
 ```markdown
 ## Current Sprint

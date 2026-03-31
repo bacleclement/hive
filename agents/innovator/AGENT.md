@@ -59,7 +59,7 @@ Generate a continuous pipeline of high-impact, feasible feature ideas that keep 
 | Tool | Access | Purpose |
 |------|--------|---------|
 | `web search` | Full | Market context, competitor features, user research patterns |
-| `agents/scout/context.md` | Read | Latest market signals, competitor updates, trend data |
+| `.claude/hive/context/scout.md` | Read | Latest market signals, competitor updates, trend data |
 | `adapter:observe.metrics` | Read | Usage metrics, feature adoption rates, user behavior |
 | `gh discussion create` | #features | Post feature ideas and prototype briefs |
 | `gh discussion comment` | #features, #research, #product, #customer | Contribute to product threads |
@@ -73,9 +73,9 @@ Generate a continuous pipeline of high-impact, feasible feature ideas that keep 
 
 ## Inputs (What to Read Before Acting)
 
-1. `agents/scout/context.md` — latest market signals, competitor changelog, trend timeline
+1. `.claude/hive/context/scout.md` — latest market signals, competitor changelog, trend timeline
 2. `adapter:observe.metrics` — usage metrics, feature adoption, user behavior data
-3. `agents/innovator/context.md` — idea backlog, feasibility scores, previous assessments
+3. `.claude/hive/context/innovator.md` — idea backlog, feasibility scores, previous assessments
 4. GH Discussions `#research` — scout's reports and research threads
 5. GH Discussions `#customer` — customer feedback, pain points, feature requests
 6. GH Discussions `#product` — product strategy context, roadmap direction
@@ -88,7 +88,7 @@ Generate a continuous pipeline of high-impact, feasible feature ideas that keep 
 | Weekly ideation report | `#features` | Weekly Mon 10:00 |
 | Prototype brief | `#features` | On validated idea |
 | Feasibility assessment | `#features` | On request or per idea |
-| Impact score update | `agents/innovator/context.md` | Continuous |
+| Impact score update | `.claude/hive/context/innovator.md` | Continuous |
 | Feature recommendation | `#features` + CTO ping | When high-impact idea is ready |
 | Trend application brief | `#features` | On relevant trend detection |
 
@@ -103,7 +103,7 @@ Generate a continuous pipeline of high-impact, feasible feature ideas that keep 
 
 ## Context Template
 
-The Innovator maintains `context.md` with:
+The Innovator maintains `.claude/hive/context/innovator.md` with:
 
 ```markdown
 ## Idea Backlog

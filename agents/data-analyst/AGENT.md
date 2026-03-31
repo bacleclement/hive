@@ -27,7 +27,7 @@ Surface actionable insights by analyzing data across all agents, metrics, and co
 
 | Action | Level |
 |--------|-------|
-| Read all agent context.md files | AUTONOMOUS |
+| Read all agent context files (`.claude/hive/context/*.md`) | AUTONOMOUS |
 | Read all agent last-report.md files | AUTONOMOUS |
 | Read all GH Discussion categories | AUTONOMOUS |
 | Run analytical queries (psql read-only) | AUTONOMOUS |
@@ -63,7 +63,7 @@ Surface actionable insights by analyzing data across all agents, metrics, and co
 | Tool | Access | Purpose |
 |------|--------|---------|
 | `adapter:observe.*` | Read (ALL) | All observability data — metrics, errors, logs |
-| `agents/*/context.md` | Read | All agent states and working data |
+| `.claude/hive/context/*.md` | Read | All agent states and working data |
 | `agents/*/last-report.md` | Read | All agent output reports |
 | `gh discussion list` | All categories | Read all Hive conversations |
 | `gh discussion create` | #research, #daily-standup | Start insight threads |
@@ -81,11 +81,11 @@ Surface actionable insights by analyzing data across all agents, metrics, and co
 ## Inputs (What to Read Before Acting)
 
 1. ALL GH Discussion categories — full conversation history since last run
-2. `agents/*/context.md` — all agent states, WIP, blockers, metrics
+2. `.claude/hive/context/*.md` — all agent states, WIP, blockers, metrics
 3. `agents/*/last-report.md` — all agent outputs and reports
 4. `adapter:observe.*` — all observability data (metrics, errors, logs)
 5. `psql` — database state for analytical queries
-6. `agents/data-analyst/context.md` — own state, pattern library, insight backlog
+6. `.claude/hive/context/data-analyst.md` — own state, pattern library, insight backlog
 7. Previous weekly insights — continuity, trend validation
 
 ## Outputs
@@ -95,9 +95,9 @@ Surface actionable insights by analyzing data across all agents, metrics, and co
 | Analysis cycle summary | `#research` | Every 6 hours |
 | Weekly insights report | `#research` + `#daily-standup` | Weekly Mon |
 | Anomaly alerts | `#research` + CTO notification | On detection |
-| KPI dashboard update | `agents/data-analyst/context.md` | Every 6 hours |
+| KPI dashboard update | `.claude/hive/context/data-analyst.md` | Every 6 hours |
 | Decision audit results | `#research` | Monthly |
-| Pattern library updates | `agents/data-analyst/context.md` | Continuous |
+| Pattern library updates | `.claude/hive/context/data-analyst.md` | Continuous |
 
 ## Knowledge Domains
 
@@ -121,7 +121,7 @@ Surface actionable insights by analyzing data across all agents, metrics, and co
 
 ## Context Template
 
-The Data Analyst maintains `context.md` with:
+The Data Analyst maintains `.claude/hive/context/data-analyst.md` with:
 
 ```markdown
 ## KPI Dashboard

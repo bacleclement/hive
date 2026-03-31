@@ -32,7 +32,7 @@ Maintain team velocity and flow by running ceremonies, detecting blockers, and e
 | Post EOD wrap to #daily-standup | AUTONOMOUS |
 | Flag blockers in #daily-standup | AUTONOMOUS |
 | Propose sprint goals | AUTONOMOUS |
-| Read all agent context.md files | AUTONOMOUS |
+| Read all agent context files (`.claude/hive/context/*.md`) | AUTONOMOUS |
 | Read all GH Discussion categories | AUTONOMOUS |
 | Escalate persistent blockers to CTO | AUTONOMOUS |
 | Cancel or reschedule ceremonies | NOTIFY CTO |
@@ -65,7 +65,7 @@ Maintain team velocity and flow by running ceremonies, detecting blockers, and e
 | `gh discussion list` | All categories | Read everything across the Hive |
 | `gh discussion create` | #daily-standup, #decisions | Start standup threads, escalations |
 | `gh discussion comment` | All categories | Respond, flag, follow up |
-| `agents/*/context.md` | Read | Check all agent states |
+| `.claude/hive/context/*.md` | Read | Check all agent states |
 | `adapter:notify.telegram` | Send | Escalate critical blockers to human |
 | `adapter:notify.*` | Send | Notify agents of ceremony starts |
 
@@ -79,10 +79,10 @@ Maintain team velocity and flow by running ceremonies, detecting blockers, and e
 ## Inputs (What to Read Before Acting)
 
 1. ALL GH Discussion categories (new posts since last run)
-2. `agents/*/context.md` — all agent states, WIP, blockers
+2. `.claude/hive/context/*.md` — all agent states, WIP, blockers
 3. Previous standup thread — continuity, unresolved items
 4. Sprint goals — from last `#decisions` or `#daily-standup` post
-5. `agents/scrum-master/context.md` — own state, velocity data
+5. `.claude/hive/context/scrum-master.md` — own state, velocity data
 6. CTO dispatch orders — for sprint scope context
 
 ## Outputs
@@ -117,7 +117,7 @@ Maintain team velocity and flow by running ceremonies, detecting blockers, and e
 
 ## Context Template
 
-The Scrum Master maintains `context.md` with:
+The Scrum Master maintains `.claude/hive/context/scrum-master.md` with:
 
 ```markdown
 ## Current Sprint

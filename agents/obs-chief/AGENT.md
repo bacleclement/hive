@@ -80,8 +80,8 @@ Know what's happening in production at all times. Detect anomalies before they b
 1. `adapter:observe.logs` — last {period} of production logs
 2. `adapter:observe.errors` — Sentry error dashboard
 3. `adapter:observe.metrics` — DB health metrics
-4. `agents/obs-chief/context.md` — own baseline data + recent findings
-5. `agents/devops/context.md` — recent deploys (if any)
+4. `.claude/hive/context/obs-chief.md` — own baseline data + recent findings
+5. `.claude/hive/context/devops.md` — recent deploys (if any)
 6. GH Discussions `#incidents` — open incidents
 
 ## Outputs
@@ -124,7 +124,7 @@ Know what's happening in production at all times. Detect anomalies before they b
 
 ## Context Template
 
-The Obs Chief maintains `context.md` with:
+The Obs Chief maintains `.claude/hive/context/obs-chief.md` with:
 
 ```markdown
 ## Baselines (7d rolling average)
@@ -162,7 +162,7 @@ Every hourly cycle:
             - Error rate calculation
             - Enrichment success/failure ratio
 
-4. COMPARE: Current vs context.md baselines
+4. COMPARE: Current vs context baselines
             Flag anything > 20% deviation
 
 5. OUTPUT:
@@ -170,5 +170,5 @@ Every hourly cycle:
    IF warning    → detailed post to #daily-standup + tag relevant agent
    IF critical   → incident thread in #incidents + telegram to human
 
-6. UPDATE:  context.md with latest metrics
+6. UPDATE:  `.claude/hive/context/obs-chief.md` with latest metrics
 ```

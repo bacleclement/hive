@@ -27,7 +27,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 2. **Read today's standup** from `#daily-standup` to know what was planned for today.
 
-3. **Read all agent contexts**: For each `agents/*/context.md`, extract:
+3. **Read all agent contexts**: For each `.claude/hive/context/*.md`, extract:
    - What was completed today (compare to morning standup)
    - Current blockers
    - Any new issues raised during the day
@@ -44,7 +44,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 6. **Compile EOD wrap** and post to GH Discussions (#daily-standup).
 
-7. **Update own context**: Write updated state to `agents/scrum-master/context.md`.
+7. **Update own context**: Write updated state to `.claude/hive/context/scrum-master.md`.
 
 ## Output Format
 
@@ -78,6 +78,6 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/scrum-master/context.md
+- Do NOT modify files except .claude/hive/context/scrum-master.md
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead

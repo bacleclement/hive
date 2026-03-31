@@ -26,7 +26,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 ## Procedure
 
-1. **Read own context** — Load `agents/data-analyst/context.md` for:
+1. **Read own context** — Load `.claude/hive/context/data-analyst.md` for:
    - Full KPI dashboard history
    - Known cross-agent correlations
    - Pattern library
@@ -36,10 +36,11 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 2. **Read ALL agent contexts** — Comprehensive scan of every agent:
    ```bash
-   for agent_dir in agents/*/; do
-     if [ -f "${agent_dir}context.md" ]; then
-       echo "=== $(basename $agent_dir) ==="
-       cat "${agent_dir}context.md"
+   for context_file in .claude/hive/context/*.md; do
+     if [ -f "$context_file" ]; then
+       agent_name=$(basename "$context_file" .md)
+       echo "=== ${agent_name} ==="
+       cat "$context_file"
      fi
    done
    ```
@@ -102,7 +103,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
    - Any new patterns emerging (need 3+ data points)?
    - Any anti-patterns being repeated?
 
-10. **Update context.md** — Full rewrite of `agents/data-analyst/context.md`:
+10. **Update context** — Full rewrite of `.claude/hive/context/data-analyst.md`:
     - Updated "KPI Dashboard" with 7-day trends
     - Updated "Cross-Agent Correlations"
     - Updated "Pattern Library" (confirmed/invalidated)
@@ -185,7 +186,7 @@ Body format:
 
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except `agents/data-analyst/context.md`
+- Do NOT modify files except `.claude/hive/context/data-analyst.md`
 - Do NOT take action on insights — recommend only
 - Do NOT access raw PII — aggregated/anonymized data only
 - Do NOT modify any data — read-only access

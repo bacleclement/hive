@@ -76,9 +76,9 @@ Ensure the system performs at every scale, bottlenecks are found before users fi
 ## Inputs (What to Read Before Acting)
 
 1. `adapter:observe.metrics` — pg_stat_statements, connection pool stats, table sizes
-2. `agents/scale-chief/context.md` — performance baselines, known slow queries, capacity projections
-3. `agents/obs-chief/context.md` — latency baselines, error rate trends
-4. `agents/devops/context.md` — resource utilization, scaling headroom
+2. `.claude/hive/context/scale-chief.md` — performance baselines, known slow queries, capacity projections
+3. `.claude/hive/context/obs-chief.md` — latency baselines, error rate trends
+4. `.claude/hive/context/devops.md` — resource utilization, scaling headroom
 5. GH Discussions `#scaling` — open performance threads
 6. Recent codebase changes (query-related PRs)
 
@@ -120,7 +120,7 @@ Ensure the system performs at every scale, bottlenecks are found before users fi
 
 ## Context Template
 
-The Scale Chief maintains `context.md` with:
+The Scale Chief maintains `.claude/hive/context/scale-chief.md` with:
 
 ```markdown
 ## Slow Queries (p95 > 100ms)

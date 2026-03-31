@@ -82,7 +82,7 @@ Resolve user issues quickly and accurately by triaging, investigating, and eithe
 4. `#incidents` — ongoing incident threads, related reports
 5. `#customer` — account context, related feedback
 6. Knowledge base — existing solutions, known issues
-7. `agents/support/context.md` — own state, open tickets, resolution metrics
+7. `.claude/hive/context/support.md` — own state, open tickets, resolution metrics
 
 ## Outputs
 
@@ -115,7 +115,7 @@ Resolve user issues quickly and accurately by triaging, investigating, and eithe
 
 ## Context Template
 
-The Support Agent maintains `context.md` with:
+The Support Agent maintains `.claude/hive/context/support.md` with:
 
 ```markdown
 ## Open Tickets

@@ -75,7 +75,7 @@ Continuously scan the competitive landscape, market trends, and emerging opportu
 
 1. Web search results — competitor names, industry keywords, trend terms
 2. Web fetch — competitor product pages, changelog pages, pricing pages
-3. `agents/scout/context.md` — competitor inventory, tracked signals, last scan results
+3. `.claude/hive/context/scout.md` — competitor inventory, tracked signals, last scan results
 4. GH Discussions `#research` — ongoing research threads, team questions
 5. GH Discussions `#features` — what the team is building (context for relevance)
 6. GH Discussions `#product` — product strategy (context for prioritization)
@@ -89,7 +89,7 @@ Continuously scan the competitive landscape, market trends, and emerging opportu
 | Weekly deep scan report | `#research` | Weekly Sat |
 | Opportunity brief | `#research` | On validated opportunity |
 | Partnership lead | `#research` | On discovery |
-| Trend timeline update | `agents/scout/context.md` | Continuous |
+| Trend timeline update | `.claude/hive/context/scout.md` | Continuous |
 
 ## Maturity-Aware Decision Rules
 
@@ -102,7 +102,7 @@ Continuously scan the competitive landscape, market trends, and emerging opportu
 
 ## Context Template
 
-The Scout maintains `context.md` with:
+The Scout maintains `.claude/hive/context/scout.md` with:
 
 ```markdown
 ## Competitor Changelog

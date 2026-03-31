@@ -25,7 +25,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 1. **Verify auth**: Run `gh auth status` and confirm the correct account is active. If wrong, output report to stdout instead of posting.
 
-2. **Read all agent contexts**: For each agent directory in `agents/*/context.md`, read the file and extract:
+2. **Read all agent contexts**: For each agent directory in `.claude/hive/context/*.md`, read the file and extract:
    - Current task / WIP
    - Blockers (if any)
    - Last activity timestamp
@@ -46,7 +46,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 7. **Compile standup summary** and post to GH Discussions (#daily-standup).
 
-8. **Update own context**: Write updated state to `agents/scrum-master/context.md` — update ceremony log with today's standup status.
+8. **Update own context**: Write updated state to `.claude/hive/context/scrum-master.md` — update ceremony log with today's standup status.
 
 ## Output Format
 
@@ -78,6 +78,6 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/scrum-master/context.md
+- Do NOT modify files except .claude/hive/context/scrum-master.md
 - Verify `gh auth status` uses the correct account before posting
 - If gh auth is wrong, output report to stdout instead

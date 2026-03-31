@@ -27,16 +27,16 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 1. **Verify auth**: Run `gh auth status` and confirm the correct account is active. If wrong, output report to stdout instead of posting.
 
-2. **Read own context**: Load `agents/sec-chief/context.md` for CVE inventory, known risks, and last audit dates.
+2. **Read own context**: Load `.claude/hive/context/sec-chief.md` for CVE inventory, known risks, and last audit dates.
 
-3. **Read DevOps context**: Load `agents/devops/context.md` — any recent deploys introducing new attack surface?
+3. **Read DevOps context**: Load `.claude/hive/context/devops.md` — any recent deploys introducing new attack surface?
 
 4. **Dependency vulnerability scan**:
    ```bash
    cd {project_root} && pnpm audit --json 2>/dev/null || pnpm audit 2>&1
    ```
    - Parse results: count critical, high, moderate, low vulnerabilities
-   - Compare to previous scan from context.md
+   - Compare to previous scan from `.claude/hive/context/sec-chief.md`
    - Flag NEW vulnerabilities not in the CVE inventory
 
 5. **Secret detection scan**:
@@ -105,7 +105,7 @@ Read `clients/{project}/config.json` for project details. Key fields:
 
 15. **Compile report and post to `#security`**. If any P0 findings, also create incident thread in `#incidents`.
 
-16. **Update own context**: Refresh CVE inventory, last audit date, and (on Tuesdays) all sections of `agents/sec-chief/context.md`.
+16. **Update own context**: Refresh CVE inventory, last audit date, and (on Tuesdays) all sections of `.claude/hive/context/sec-chief.md`.
 
 ## Output Format
 
@@ -201,7 +201,7 @@ gh api graphql -f query='mutation { createDiscussion(input: { repositoryId: "R_k
 ## Constraints
 - Do NOT write code or create PRs
 - Do NOT push anything
-- Do NOT modify files except agents/sec-chief/context.md
+- Do NOT modify files except .claude/hive/context/sec-chief.md
 - Do NOT modify RLS policies, auth config, or secrets
 - Do NOT access production secrets — scan for exposure only
 - Verify `gh auth status` uses the correct account before posting

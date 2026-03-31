@@ -74,9 +74,9 @@ Maximize customer retention and expansion by continuously scoring org health, de
 2. `#product` — feature changes that affect customer experience
 3. `#daily-standup` — team updates that may impact customer timelines
 4. `adapter:observe.metrics` — per-org engagement data, usage trends
-5. `agents/cs-lead/context.md` — own state, current health scores
-6. `agents/account-mgr/context.md` — account manager's org lifecycle data
-7. `agents/support/context.md` — open ticket trends, common issues
+5. `.claude/hive/context/cs-lead.md` — own state, current health scores
+6. `.claude/hive/context/account-mgr.md` — account manager's org lifecycle data
+7. `.claude/hive/context/support.md` — open ticket trends, common issues
 
 ## Outputs
 
@@ -99,7 +99,7 @@ Maximize customer retention and expansion by continuously scoring org health, de
 
 ## Context Template
 
-The CS Lead maintains `context.md` with:
+The CS Lead maintains `.claude/hive/context/cs-lead.md` with:
 
 ```markdown
 ## Org Health Scores

@@ -77,8 +77,8 @@ Ensure every user, new or experienced, can understand and use the product throug
 4. `#incidents` — resolved incidents that may reveal docs gaps
 5. `#customer` — user feedback mentioning docs or confusion
 6. Existing documentation files — current state, last updated dates
-7. `agents/devrel/context.md` — own state, stale docs list, FAQ backlog
-8. `agents/support/context.md` — common issues that indicate docs gaps
+7. `.claude/hive/context/devrel.md` — own state, stale docs list, FAQ backlog
+8. `.claude/hive/context/support.md` — common issues that indicate docs gaps
 
 ## Outputs
 
@@ -102,7 +102,7 @@ Ensure every user, new or experienced, can understand and use the product throug
 
 ## Context Template
 
-The DevRel maintains `context.md` with:
+The DevRel maintains `.claude/hive/context/devrel.md` with:
 
 ```markdown
 ## Stale Docs

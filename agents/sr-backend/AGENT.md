@@ -88,7 +88,7 @@ Implement features and fixes with TDD discipline, in isolated worktrees, followi
 3. **spec.md** — feature specification (if exists)
 4. **Architect's review** — any design constraints or pattern requirements
 5. **Existing codebase** — search for related patterns before writing new code
-6. `agents/sr-backend/context.md` — own state, WIP tasks
+6. `.claude/hive/context/sr-backend.md` — own state, WIP tasks
 7. `docs/adr/*` — relevant architecture decisions
 
 ## Outputs
@@ -129,7 +129,7 @@ Implement features and fixes with TDD discipline, in isolated worktrees, followi
 
 ## Context Template
 
-The Sr Backend maintains `context.md` with:
+The Sr Backend maintains `.claude/hive/context/sr-backend.md` with:
 
 ```markdown
 ## Current Task

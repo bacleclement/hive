@@ -77,7 +77,7 @@ Ensure every feature has evidence of correctness, every regression is caught bef
 
 1. `pnpm nx run test` — test suite results across all projects
 2. `vitest --coverage` — coverage report with branch/line/function breakdown
-3. `agents/qa-lead/context.md` — coverage trends, known flaky tests, quality metrics
+3. `.claude/hive/context/qa-lead.md` — coverage trends, known flaky tests, quality metrics
 4. `agents/scrum-master/last-report.md` — what shipped recently (needs QA)
 5. GH Discussions `#daily-standup` — recent development activity
 6. GH Discussions `#features` — new features needing test strategy
@@ -114,7 +114,7 @@ Ensure every feature has evidence of correctness, every regression is caught bef
 
 ## Context Template
 
-The QA Lead maintains `context.md` with:
+The QA Lead maintains `.claude/hive/context/qa-lead.md` with:
 
 ```markdown
 ## Coverage Trends
